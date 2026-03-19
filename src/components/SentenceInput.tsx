@@ -67,7 +67,7 @@ export const SentenceInput = (props: SentenceInputProps) => {
             </label>
             <button
               type="button"
-              class="rounded-lg border border-violet-300 bg-violet-50 px-3 py-1.5 text-sm font-medium text-violet-700 transition hover:bg-violet-100 disabled:opacity-50 dark:border-violet-700 dark:bg-violet-950/50 dark:text-violet-300 dark:hover:bg-violet-900/50"
+              class=" cursor-pointer rounded-lg border border-violet-300 bg-violet-50 px-3 py-1.5 text-sm font-medium text-violet-700 transition hover:bg-violet-100 disabled:opacity-50 dark:border-violet-700 dark:bg-violet-950/50 dark:text-violet-300 dark:hover:bg-violet-900/50"
               disabled={props.disabled()}
               onClick={() => props.onAddCompareField()}
             >
@@ -94,7 +94,7 @@ export const SentenceInput = (props: SentenceInputProps) => {
                   />
                   <button
                     type="button"
-                    class="shrink-0 self-start rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-red-300 hover:bg-red-50 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:border-red-800 dark:hover:bg-red-950/40 dark:hover:text-red-300"
+                    class="cursor-pointer shrink-0 self-start rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-red-300 hover:bg-red-50 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:border-red-800 dark:hover:bg-red-950/40 dark:hover:text-red-300"
                     disabled={!canRemove() || props.disabled()}
                     title={
                       canRemove()
@@ -115,7 +115,7 @@ export const SentenceInput = (props: SentenceInputProps) => {
       <div class="mt-6 flex flex-wrap items-center gap-3">
         <button
           type="button"
-          class="inline-flex items-center justify-center rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-slate-900"
+          class="cursor-pointer inline-flex items-center justify-center rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-slate-900"
           disabled={!canCompute()}
           onClick={() => props.onCompute()}
         >

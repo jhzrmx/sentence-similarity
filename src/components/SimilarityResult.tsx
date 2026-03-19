@@ -70,7 +70,7 @@ export const SimilarityResult = (props: SimilarityResultProps) => {
                   'border-slate-200': !isHighestScore(row.score01),
                 }}
               >
-                <p class={`mb-3 text-sm text-slate-800 dark:text-slate-200 ${isHighestScore(row.score01) ? 'font-bold' : ''}`}>
+                <p class={`mb-3 text-sm text-slate-800 dark:text-slate-200 ${isHighestScore(row.score01) ? 'font-semibold' : ''}`}>
                   {row.text}
                 </p>
                 <div class="flex flex-wrap items-end gap-4">
