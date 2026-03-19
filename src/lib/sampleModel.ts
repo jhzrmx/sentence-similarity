@@ -4,9 +4,9 @@ import { assertResponseNotHtml, assertValidGgufBlobs } from './ggufValidate'
 export const SAMPLE_MODEL_FILENAME = 'all-MiniLM-L6-v2-Q4_K_M.gguf'
 export const SAMPLE_MODEL_URL = `${import.meta.env.BASE_URL}assets/models/${SAMPLE_MODEL_FILENAME}`
 
-export async function fetchSampleModelFile(
+export const fetchSampleModelFile = async (
   onProgress?: (loaded: number, total: number | null) => void
-): Promise<File> {
+): Promise<File> => {
   const res = await fetch(SAMPLE_MODEL_URL)
   if (!res.ok) {
     throw new Error(

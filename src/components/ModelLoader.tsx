@@ -12,13 +12,13 @@ export interface ModelLoaderProps {
   sampleFetchProgress?: Accessor<string | null>
 }
 
-function ggufFilesFromList(files: FileList | File[]): File[] {
+const ggufFilesFromList = (files: FileList | File[]): File[] => {
   return Array.from(files).filter((f) =>
     f.name.toLowerCase().endsWith('.gguf')
   )
 }
 
-export function ModelLoader(props: ModelLoaderProps) {
+export const ModelLoader = (props: ModelLoaderProps) => {
   const [dragOver, setDragOver] = createSignal(false)
 
   const statusLabel = () => {

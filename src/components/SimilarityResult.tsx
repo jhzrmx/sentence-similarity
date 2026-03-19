@@ -15,7 +15,7 @@ export interface SimilarityResultProps {
   visible: Accessor<boolean>
 }
 
-export function SimilarityResult(props: SimilarityResultProps) {
+export const SimilarityResult = (props: SimilarityResultProps) => {
   return (
     <section
       class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900/50"
@@ -68,11 +68,11 @@ export function SimilarityResult(props: SimilarityResultProps) {
                       {row.cosine.toFixed(4)}
                     </p>
                   </div>
-                  <div class="flex-1 min-w-[140px]">
+                  <div class="flex-1 min-w-35">
                     <p class="text-xs text-slate-500">{row.interpretation}</p>
                     <div class="mt-1 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
                       <div
-                        class="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
+                        class="h-full rounded-full bg-linear-to-r from-violet-500 to-fuchsia-500"
                         style={{
                           width: `${Math.min(100, Math.max(0, row.score01 * 100))}%`,
                         }}
