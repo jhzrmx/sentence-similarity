@@ -16,6 +16,17 @@ export interface SimilarityResultProps {
 }
 
 export const SimilarityResult = (props: SimilarityResultProps) => {
+  const getMaxScore = () => {
+    const rows = props.rows()
+    if (!rows || rows.length === 0) return null
+    return Math.max(...rows.map((r) => r.score01))
+  }
+
+  const isHighestScore = (score: number) => {
+    const maxScore = getMaxScore()
+    return maxScore !== null && Math.abs(score - maxScore) < 0.0001
+  }
+
   return (
     <section
       class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900/50"
@@ -51,8 +62,15 @@ export const SimilarityResult = (props: SimilarityResultProps) => {
           )}
           <ul class="space-y-4">
             {props.rows()!.map((row) => (
-              <li class="rounded-xl border border-slate-200 p-4 dark:border-slate-600">
-                <p class="mb-3 text-sm text-slate-800 dark:text-slate-200">
+              <li
+                class="rounded-xl border p-4 dark:border-slate-600"
+                classList={{
+                  'border-emerald-300 bg-emerald-50/70 dark:border-emerald-600 dark:bg-emerald-950/30 ring-2 ring-emerald-400/40':
+                    isHighestScore(row.score01),
+                  'border-slate-200': !isHighestScore(row.score01),
+                }}
+              >
+                <p class={`mb-3 text-sm text-slate-800 dark:text-slate-200 ${isHighestScore(row.score01) ? 'font-bold' : ''}`}>
                   {row.text}
                 </p>
                 <div class="flex flex-wrap items-end gap-4">
