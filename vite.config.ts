@@ -33,7 +33,7 @@ export default defineConfig({
           {
             src: `/${repositoryTarget}favicon.ico`,
             sizes: 'any',
-            type: 'image/ico',
+            type: 'image/x-icon',
             purpose: 'any',
           },
         ],
