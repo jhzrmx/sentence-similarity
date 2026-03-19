@@ -112,3 +112,17 @@ export const getEmbeddingDimensions = (): number | null => {
     return null
   }
 }
+
+/**
+ * Unload the current model and reset the singleton.
+ */
+export const unloadModel = async (): Promise<void> => {
+  if (singleton) {
+    try {
+      await singleton.exit()
+    } catch {
+      /* suppress errors during exit */
+    }
+    singleton = null
+  }
+}

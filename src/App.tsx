@@ -6,16 +6,17 @@ import {
   SimilarityResult,
   type ComparisonResultRow,
 } from './components/SimilarityResult'
+import { fetchSampleModelFile } from './lib/sampleModel'
 import {
   cosineSimilarity,
   cosineToUnitInterval,
   interpretSimilarity,
 } from './lib/similarity'
-import { fetchSampleModelFile } from './lib/sampleModel'
 import {
   getEmbedding,
   getEmbeddingDimensions,
   loadModel,
+  unloadModel,
 } from './lib/wllama'
 
 function newCompareField(): CompareField {
@@ -131,6 +132,18 @@ const App = () => {
     }
   }
 
+  const handleUnload = async () => {
+    await unloadModel()
+    setModelStatus('idle')
+    setModelName('')
+    setModelError('')
+    setHasResult(false)
+    setComputeError('')
+    setResultRows(null)
+    clearEmbeddingCache()
+    setEmbeddingDim(null)
+  }
+
   const embeddingFor = async (text: string): Promise<number[]> => {
     const hit = embCache.get(text)
     if (hit) return hit
@@ -209,6 +222,7 @@ const App = () => {
             error={modelError}
             onFilesSelected={handleFiles}
             onLoadSample={handleLoadSample}
+            onUnload={handleUnload}
             sampleFetchProgress={sampleLoadHint}
           />
           <SentenceInput
