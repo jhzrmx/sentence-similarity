@@ -20,7 +20,7 @@ export interface SentenceInputProps {
   modelReady: Accessor<boolean>
 }
 
-export function SentenceInput(props: SentenceInputProps) {
+export const SentenceInput = (props: SentenceInputProps) => {
   const nonEmptyComparisons = () =>
     props.compareFields
       .map((f) => f.value.trim())

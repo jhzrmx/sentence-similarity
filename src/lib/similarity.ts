@@ -2,7 +2,7 @@
  * Cosine similarity between two equal-length vectors.
  * Returns a value in [-1, 1] (or 0 if degenerate).
  */
-export function cosineSimilarity(a: number[], b: number[]): number {
+export const cosineSimilarity = (a: number[], b: number[]): number => {
   if (a.length !== b.length || a.length === 0) {
     return 0
   }
@@ -16,12 +16,12 @@ export function cosineSimilarity(a: number[], b: number[]): number {
 }
 
 /** Map cosine [-1, 1] to [0, 1] for a friendly 0–1 score bar */
-export function cosineToUnitInterval(cos: number): number {
+export const cosineToUnitInterval = (cos: number): number => {
   return Math.max(0, Math.min(1, (cos + 1) / 2))
 }
 
 /** Bands on raw cosine similarity (per MVP spec) */
-export function interpretSimilarity(cos: number): string {
+export const interpretSimilarity = (cos: number): string => {
   if (cos >= 0.8) return 'Highly similar'
   if (cos >= 0.5) return 'Moderately similar'
   return 'Low similarity'

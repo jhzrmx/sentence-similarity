@@ -4,10 +4,10 @@ const GGUF_MAGIC = 'GGUF'
  * Reject obvious non-GGUF inputs before Wllama runs (avoids RangeError / huge allocations
  * when the parser reads garbage from HTML, Git LFS pointers, etc.).
  */
-export async function assertValidGgufBlobs(
+export const assertValidGgufBlobs = async (
   blobs: Blob[],
   label = 'model'
-): Promise<void> {
+): Promise<void> => {
   for (let i = 0; i < blobs.length; i++) {
     const blob = blobs[i]
     const name = blob instanceof File ? blob.name : `${label} part ${i + 1}`
@@ -47,7 +47,7 @@ export async function assertValidGgufBlobs(
   }
 }
 
-export function assertResponseNotHtml(res: Response, context: string): void {
+export const assertResponseNotHtml = (res: Response, context: string): void => {
   const ct = (res.headers.get('content-type') || '').toLowerCase()
   if (ct.includes('text/html')) {
     throw new Error(

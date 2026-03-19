@@ -11,11 +11,11 @@ const WASM_PATHS = {
 
 let singleton: Wllama | null = null
 
-export function isGgufFileName(name: string): boolean {
+export const isGgufFileName = (name: string): boolean => {
   return /^.*\.gguf(?:\?.*)?$/i.test(name)
 }
 
-async function getInstance(): Promise<Wllama> {
+const getInstance = async (): Promise<Wllama> => {
   if (!singleton) {
     singleton = new Wllama(WASM_PATHS)
   }
@@ -31,7 +31,7 @@ const defaultLoadConfig: LoadModelConfig = {
 /**
  * Load embedding model from uploaded file(s). Replaces any previously loaded model.
  */
-export async function loadModel(files: File[]): Promise<{ displayName: string }> {
+export const loadModel = async (files: File[]): Promise<{ displayName: string }> => {
   if (!files.length) {
     throw new Error('No model file selected')
   }
@@ -79,14 +79,14 @@ export async function loadModel(files: File[]): Promise<{ displayName: string }>
   return { displayName }
 }
 
-export function isModelReady(): boolean {
+export const isModelReady = (): boolean => {
   return singleton?.isModelLoaded() ?? false
 }
 
 /**
  * Embedding vector for one text (Wllama createEmbedding).
  */
-export async function getEmbedding(text: string): Promise<number[]> {
+export const getEmbedding = async (text: string): Promise<number[]> => {
   const w = await getInstance()
   if (!w.isModelLoaded()) {
     throw new Error('No model loaded. Upload an embedding GGUF model first.')
@@ -104,7 +104,7 @@ export async function getEmbedding(text: string): Promise<number[]> {
   }
 }
 
-export function getEmbeddingDimensions(): number | null {
+export const getEmbeddingDimensions = (): number | null => {
   if (!singleton?.isModelLoaded()) return null
   try {
     return singleton.getLoadedContextInfo().n_embd

@@ -22,7 +22,7 @@ function newCompareField(): CompareField {
   return { id: crypto.randomUUID(), value: '' }
 }
 
-export default function App() {
+const App = () => {
   const [modelStatus, setModelStatus] = createSignal<ModelStatus>('idle')
   const [modelName, setModelName] = createSignal('')
   const [modelError, setModelError] = createSignal('')
@@ -48,17 +48,17 @@ export default function App() {
   let cachedTargetText = ''
   let cachedTargetEmb: number[] | null = null
 
-  function clearEmbeddingCache() {
+  const clearEmbeddingCache = () => {
     embCache.clear()
     cachedTargetText = ''
     cachedTargetEmb = null
   }
 
-  function addCompareField() {
+  const addCompareField = () => {
     setCompareFields(compareFields.length, newCompareField())
   }
 
-  function removeCompareField(id: string) {
+  const removeCompareField = (id: string) => {
     const idx = compareFields.findIndex((f) => f.id === id)
     if (idx < 0) return
     if (compareFields.length <= 1) {
@@ -72,12 +72,12 @@ export default function App() {
     )
   }
 
-  function updateCompareField(id: string, value: string) {
+  const updateCompareField = (id: string, value: string) => {
     const idx = compareFields.findIndex((f) => f.id === id)
     if (idx >= 0) setCompareFields(idx, 'value', value)
   }
 
-  async function handleFiles(files: File[]) {
+  const handleFiles = async (files: File[]) => {
     setSampleLoadHint(null)
     setModelError('')
     setModelStatus('loading')
@@ -97,7 +97,7 @@ export default function App() {
     }
   }
 
-  async function handleLoadSample() {
+  const handleLoadSample = async () => {
     setSampleLoadHint(null)
     setModelError('')
     setModelStatus('loading')
@@ -131,7 +131,7 @@ export default function App() {
     }
   }
 
-  async function embeddingFor(text: string): Promise<number[]> {
+  const embeddingFor = async (text: string): Promise<number[]> => {
     const hit = embCache.get(text)
     if (hit) return hit
     const emb = await getEmbedding(text)
@@ -139,7 +139,7 @@ export default function App() {
     return emb
   }
 
-  async function handleCompute() {
+  const handleCompute = async () => {
     const target = targetSentence().trim()
     const lines = compareFields
       .map((f) => f.value.trim())
@@ -246,3 +246,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App
