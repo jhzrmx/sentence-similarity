@@ -8,6 +8,8 @@ const crossOriginHeaders = {
   'Cross-Origin-Embedder-Policy': 'require-corp',
 } as const
 
+const repositoryTarget = 'sentence-similarity/'
+
 // COOP/COEP enable SharedArrayBuffer for Wllama multi-thread WASM
 export default defineConfig({
   plugins: [
@@ -25,11 +27,11 @@ export default defineConfig({
         background_color: '#f8fafc',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/',
-        scope: '/',
+        start_url: `/${repositoryTarget}`,
+        scope: `/${repositoryTarget}`,
         icons: [
           {
-            src: '/favicon.ico',
+            src: `/${repositoryTarget}favicon.ico`,
             sizes: 'any',
             type: 'image/ico',
             purpose: 'any',
@@ -74,6 +76,10 @@ export default defineConfig({
       },
     }),
   ],
+  base: `/${repositoryTarget}`,
+  build: {
+    target: 'esnext',
+  },
   server: {
     headers: crossOriginHeaders,
   },

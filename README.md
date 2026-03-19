@@ -2,6 +2,8 @@
 
 Client-only app: upload a **GGUF embedding model**, enter sentences, get **cosine similarity** via [Wllama](https://github.com/ngxson/wllama) (WebAssembly).
 
+Live preview [here](https://jhzrmx.github.io/sentence-similarity/).
+
 ## Setup
 
 ```bash
@@ -9,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Open the URL shown (e.g. `http://localhost:5173`). **Use a real embedding GGUF** (e.g. `nomic-embed-text`, `bge-small-en-v1.5` in GGUF form)—chat models without embedding support will fail.
+Open the URL shown (e.g. `http://localhost:5173/sentence-similarity`). **Use a real embedding GGUF** (e.g. `nomic-embed-text`, `bge-small-en-v1.5` in GGUF form)—chat models without embedding support will fail.
 
 **Sample model:** `all-MiniLM-L6-v2-Q4_K_M.gguf` is found at `public/assets/models/` to enable **Load sample model**.
 
@@ -37,11 +39,11 @@ WASM is loaded from jsDelivr (`@wllama/wllama`); the model stays local in the br
 
 ## Scripts
 
-| Script        | Description                    |
-| ------------- | ------------------------------ |
-| `npm run dev` | Vite dev server                |
-| `npm run build` | Production bundle            |
-| `npm run preview` | Preview production build     |
+| Script              | Description                     |
+| ------------------- | ------------------------------- |
+| `npm run dev`       | Vite dev server                 |
+| `npm run build`     | Production bundle               |
+| `npm run preview`   | Preview production build        |
 | `npm run typecheck` | `tsc` (may hit upstream quirks) |
 
 ## Stack
